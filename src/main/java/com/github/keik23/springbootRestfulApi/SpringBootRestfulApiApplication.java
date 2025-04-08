@@ -1,4 +1,4 @@
-package com.github.keik23.spring_boot_restful_api;
+package com.github.keik23.springbootRestfulApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

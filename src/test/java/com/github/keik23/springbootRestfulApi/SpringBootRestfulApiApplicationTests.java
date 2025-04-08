@@ -1,4 +1,4 @@
-package com.github.keik23.spring_boot_restful_api;
+package com.github.keik23.springbootRestfulApi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

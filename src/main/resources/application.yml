@@ -4,7 +4,7 @@ spring:
   application:
     name: spring-boot-restful-api
   datasource:
-    url: jdbc:postgresql://postgres:5432/spring_boot_restful_api_db
+    url: jdbc:postgresql://localhost:5432/spring_boot_restful_api_db
     username: postgres
     password: postgres
   jpa:
