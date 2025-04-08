@@ -1,0 +1,15 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: spring-boot-restful-api
+  datasource:
+    url: jdbc:postgresql://postgres:5432/spring_boot_restful_api_db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
