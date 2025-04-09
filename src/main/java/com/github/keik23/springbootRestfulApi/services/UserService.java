@@ -11,6 +11,7 @@ import com.github.keik23.springbootRestfulApi.dtos.CreateUserDto;
 import com.github.keik23.springbootRestfulApi.dtos.UpdateUserDto;
 import com.github.keik23.springbootRestfulApi.dtos.UserDto;
 import com.github.keik23.springbootRestfulApi.entities.User;
+import com.github.keik23.springbootRestfulApi.exceptions.ResourceNotFoundException;
 import com.github.keik23.springbootRestfulApi.mapper.UserMapper;
 import com.github.keik23.springbootRestfulApi.repository.UserRepository;
 
@@ -30,7 +31,7 @@ public class UserService {
     }
 
     public UserDto getUserById(UUID id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
         return userMapper.toDto(user);
     }
 
@@ -45,7 +46,7 @@ public class UserService {
     }
 
     public UserDto updateUserById(UUID id, UpdateUserDto updateUserDto) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
 
         if (StringUtils.hasText(updateUserDto.getUsername())) {
             user.setUsername(updateUserDto.getUsername());
@@ -60,7 +61,7 @@ public class UserService {
     }
 
     public void deleteUser(UUID id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
         userRepository.delete(user);
     }
 }
