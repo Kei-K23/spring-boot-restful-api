@@ -5,8 +5,10 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.github.keik23.springbootRestfulApi.dtos.CreateUserDto;
+import com.github.keik23.springbootRestfulApi.dtos.UpdateUserDto;
 import com.github.keik23.springbootRestfulApi.dtos.UserDto;
 import com.github.keik23.springbootRestfulApi.entities.User;
 import com.github.keik23.springbootRestfulApi.mapper.UserMapper;
@@ -42,19 +44,23 @@ public class UserService {
         return userMapper.toDto(userRepository.save(user));
     }
 
-    public UserDto updateUserById(UUID id, CreateUserDto createUserDto) {
+    public UserDto updateUserById(UUID id, UpdateUserDto updateUserDto) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        user.setUsername(createUserDto.getUsername());
-        user.setEmail(createUserDto.getEmail());
-        user.setPassword(createUserDto.getPassword());
-
+        if (StringUtils.hasText(updateUserDto.getUsername())) {
+            user.setUsername(updateUserDto.getUsername());
+        }
+        if (StringUtils.hasText(updateUserDto.getEmail())) {
+            user.setEmail(updateUserDto.getEmail());
+        }
+        if (StringUtils.hasText(updateUserDto.getPassword())) {
+            user.setPassword(updateUserDto.getPassword());
+        }
         return userMapper.toDto(userRepository.save(user));
     }
 
     public void deleteUser(UUID id) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
-
         userRepository.delete(user);
     }
 }
