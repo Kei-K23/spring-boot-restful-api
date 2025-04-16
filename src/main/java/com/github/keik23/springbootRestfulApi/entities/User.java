@@ -45,6 +45,10 @@ public class User {
     @NotNull
     private String password;
 
+    @Column(nullable = false)
+    @NotNull
+    private String role;
+
     @NotNull
     @ColumnDefault("now()")
     @Column(name = "created_at", nullable = false)
